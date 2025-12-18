@@ -13,6 +13,33 @@
       padding: 0;
     }
 
+    /* Modal */
+    .asset-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      cursor: pointer;
+    }
+
+    /* Imagem do modal */
+    .asset-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 14px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.25);
+    }
+
+    /* Indica interação */
+    .box-img {
+      cursor: pointer;
+    }
+
+
     html,
     body {
       height: 100%;
@@ -368,19 +395,19 @@
     <div class="grid-imagens" id="galeria">
 
       <!-- 🔽 Apenas trocar o data-src pelas imagens reais -->
-      <div class="box-img" style="background-image:url('char.png')" data-src="imagem1.png">
+      <div class="box-img" style="background-image:url('char.png')" data-src="char.png">
         <div class="titulo-img">Personagem</div>
       </div>
 
-      <div class="box-img" style="background-image:url('enemy.png')" data-src="imagem2.png">
+      <div class="box-img" style="background-image:url('enemy.png')" data-src="enemy.png">
         <div class="titulo-img">Inimigo</div>
       </div>
 
-      <div class="box-img" style="background-image:url('background.png')" data-src="imagem3.png">
+      <div class="box-img" style="background-image:url('background.png')" data-src="background.png">
         <div class="titulo-img">background</div>
       </div>
 
-      <div class="box-img" style="background-image:url('tilemap.png')" data-src="imagem4.png">
+      <div class="box-img" style="background-image:url('tilemap.png')" data-src="tilemap.png">
         <div class="titulo-img">Tilemap</div>
       </div>
 
@@ -399,21 +426,26 @@
 
   <!-- ===================== SCRIPT MODAL ======================= -->
   <script>
+    document.querySelectorAll('.box-img').forEach(box => {
+      box.addEventListener('click', () => {
+        const imageUrl = box.dataset.src
 
-    function abrirImagem(elemento) {
-      const url = elemento.style.backgroundImage;
-      const lightbox = document.getElementById("lightbox");
-      const img = document.getElementById("lightboxImg");
+        const modal = document.createElement('div')
+        modal.className = 'asset-modal'
 
-      img.style.backgroundImage = url;
-      lightbox.style.display = "flex";
-    }
+        const modalImg = document.createElement('img')
+        modalImg.src = imageUrl
 
-    function fecharImagem(event) {
-      if (event.target.id === "lightbox") {
-        document.getElementById("lightbox").style.display = "none";
-      }
-    }
+        modal.appendChild(modalImg)
+        document.body.appendChild(modal)
+
+        // Fecha ao clicar
+        modal.addEventListener('click', () => {
+          modal.remove()
+        })
+      })
+    })
+
     document.querySelector("button").addEventListener("click", () => {
       window.open("https://gd.games/instant-builds/1af1743a-04e2-4b9b-8647-83daad0efa6c", "_blank");
     });
