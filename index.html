@@ -399,10 +399,24 @@
 
   <!-- ===================== SCRIPT MODAL ======================= -->
   <script>
-    
+
+    function abrirImagem(elemento) {
+      const url = elemento.style.backgroundImage;
+      const lightbox = document.getElementById("lightbox");
+      const img = document.getElementById("lightboxImg");
+
+      img.style.backgroundImage = url;
+      lightbox.style.display = "flex";
+    }
+
+    function fecharImagem(event) {
+      if (event.target.id === "lightbox") {
+        document.getElementById("lightbox").style.display = "none";
+      }
+    }
     document.querySelector("button").addEventListener("click", () => {
-            window.open("https://gd.games/instant-builds/1af1743a-04e2-4b9b-8647-83daad0efa6c", "_blank");
-        });
+      window.open("https://gd.games/instant-builds/1af1743a-04e2-4b9b-8647-83daad0efa6c", "_blank");
+    });
   </script>
 
 </body>
