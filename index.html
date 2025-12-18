@@ -399,65 +399,10 @@
 
   <!-- ===================== SCRIPT MODAL ======================= -->
   <script>
-    (function () {
-      const galeria = document.getElementById('galeria');
-      const overlay = document.getElementById('overlay');
-      const overlayContent = document.querySelector('.overlay-content');
-      const mediaContainer = document.getElementById('mediaContainer');
-      const closeBtn = document.getElementById('closeBtn');
-
-      const boxes = galeria.querySelectorAll('.box-img');
-
-      function openPreview(box) {
-        const src = box.getAttribute('data-src');
-
-        mediaContainer.innerHTML = '';
-
-        if (src) {
-          const img = document.createElement('img');
-          img.src = src;
-          mediaContainer.appendChild(img);
-        }
-
-        overlay.classList.add('show');
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closePreview() {
-        overlay.classList.remove('show');
-        setTimeout(() => {
-          mediaContainer.innerHTML = '';
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-        }, 220);
-      }
-
-      boxes.forEach(box => {
-        box.addEventListener('click', () => openPreview(box));
-      });
-
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closePreview();
-      });
-
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closePreview();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && overlay.classList.contains('show')) closePreview();
-      });
-
-      overlayContent.addEventListener('click', (e) => e.stopPropagation());
-    })();
-
-
-    //Inserir link
+    
     document.querySelector("button").addEventListener("click", () => {
-      window.open("https://gd.games/instant-builds/1af1743a-04e2-4b9b-8647-83daad0efa6c", "_blank");
-    });
+            window.open("https://gd.games/instant-builds/1af1743a-04e2-4b9b-8647-83daad0efa6c", "_blank");
+        });
   </script>
 
 </body>
